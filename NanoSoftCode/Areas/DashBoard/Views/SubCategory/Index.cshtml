@@ -1,0 +1,64 @@
+﻿@model IEnumerable<SubCategory>
+@{
+    ViewData["Title"] = "الأقسام الفرعية";
+    Layout = "~/Areas/DashBoard/Views/Shared/_Dashboard.cshtml";
+}
+
+<h1 class="main-title">الأقسام الفرعية</h1>
+<a class="btn btn-lg btn-primary" asp-area="Dashboard" asp-controller="SubCategory" asp-action="CreateUpdate">
+    <i class="bi bi-plus-circle"></i>
+    إضافة قسم
+</a>
+@if (!Model.Any())
+{
+    <div class="alert alert-warning mt-5">
+        <h4 class="alert-heading">لا توجد أقسام !</h4>
+        <p class="mb-0">لم يتم إضافة أقسام بعد</p>
+    </div>
+}
+else
+{
+    <table class="table table-bordered table-hover mt-5" style="width:100%">
+        <thead>
+            <tr>
+                <th scope="col">
+                    القسم الفرعى
+                </th>
+                <th scope="col">
+                   القسم الرئيسي
+                </th>
+                <th scope="col">
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var subCategory in Model)
+            {
+                <tr class="table-secondary">
+                    <td scope="row" width="30%">
+                        @subCategory.Name
+                    </td>
+                    <td width="30%">
+                        @subCategory.Category.Name
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="CreateUpdate" asp-route-Id="@subCategory.Id" class="btn btn-success">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        &nbsp;
+                        <form method="post" asp-action="" style="display:inline">
+                            <input value="@subCategory.Id" hidden style="display: none" />
+                            <button asp-action="" asp-route-Id="@subCategory.Id" class="btn btn-danger" onclick="return confirm('هل تريد حذف هذا القسم؟')">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </form>
+                        @* <a asp-controller="Items" asp-action="Delete" method="post" asp-route-Id="@item.Id" class="btn btn-danger">
+                <i class="bi bi-trash3"></i>
+                </a> *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

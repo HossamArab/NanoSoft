@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+
+<html lang="ar">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewData["Title"] | المتجر</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Normalize.Css" asp-append-version="true">
+    <link rel="stylesheet" href="~/bootstrap-icons/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/Dashboard.css" asp-append-version="true">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="~/css/all.min.css" asp-append-version="true">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Tajawal:wght@200;300;400;500;700;800;900&family=Work+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!--Slidebar-->
+    <div class="settings-box">
+        <div class="settings-container">
+            <div class="option-box">
+                <ul class="mt-15">
+                    <li class="mr-15 hrm mt-15 fcw ">
+                        <a class="fcw fs-18 d-flex" asp-area="Dashboard" asp-controller="Home" asp-action="Index"><i class="fas fa-users fa-2x pl-15"></i> <p> لوحة التحكم</p></a>
+                    </li>
+                    <hr class="mt-15" />
+                    <li class="mr-15 hrm mt-15 fcw ">
+                        <a class="fcw fs-18 d-flex" asp-area="Dashboard" asp-controller="Category" asp-action="Index"><i class="fas fa-boxes fa-2x pl-15"></i> <p>الأقسام الرئيسية</p></a>
+                    </li>
+                    <hr class="mt-15"/>
+                    <li class="mr-15 mt-15 hrm fcw">
+                        <a class="fcw fs-18 d-flex" asp-area="Dashboard" asp-controller="SubCategory" asp-action="Index"><i class="fas fa-box fa-2x pl-15"></i><p> الأقسام الفرعية</p> </a>
+                    </li>
+                    <hr class ="mt-15" />
+                    <li class="mr-15 mt-15 hrm fcw">
+                        <a class="fcw fs-18 d-flex" asp-area="" asp-controller="" asp-action=""><i class="fas fas fa-laptop fa-2x pl-15"></i><p>المنتجات</p>  </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--End Slidebar-->
+    <div class="container">
+        @RenderBody()
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/mixitup.min.js" asp-append-version="true"></script>
+    <script src="~/js/mainScript.js" asp-append-version="true"></script>
+    <script src="~/js/product.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
