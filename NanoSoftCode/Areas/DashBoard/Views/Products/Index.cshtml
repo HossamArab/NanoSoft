@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "المنتجات";
+    Layout = "~/Areas/DashBoard/Views/Shared/_Dashboard.cshtml";
+}
+
+<h1 class="main-title">المنتجات</h1>
+<a class="btn btn-lg btn-primary" asp-area="Dashboard" asp-controller="Products" asp-action="CreateUpdate">
+    <i class="bi bi-plus-circle"></i>
+    إضافة منتج
+</a>
+@if (!Model.Any())
+{
+    <div class="alert alert-warning mt-5">
+        <h4 class="alert-heading">لا توجد منتجات !</h4>
+        <p class="mb-0">لم يتم إضافة منتج بعد</p>
+    </div>
+}
+else
+{
+    <div class="mt-5">
+        <table class="table table-bordered table-hover border-primary">
+            <tbody>
+                @foreach (var product in Model)
+                {
+                    <tr class="border-2 border-success">
+                        <td width="50%">
+                            <div class="d-flex">
+                                <div>
+                                    <img src="@($"{ImageSettings.ImagesPath}/{product.ImagePath}")" alt="@product.Name" style="max-width: 90px" />
+                                </div>
+                                <div class="d-flex flex-column justify-content-center me-5">
+                                    <h4 class="text-black">@product.Name</h4>
+                                </div>
+                            </div>
+                        </td>
+                        <td width="20%">
+                            <div class="d-flex align-items-center justify-content-center">
+                                <h5 class ="text-black">@product.Category!.Name</h5>
+                            </div>
+                        </td>
+                        <td width="20%">
+                            <div class="d-flex justify-content-center ">
+                                <h5 class="text-black">@product.SubCategory!.Name</h5>
+                            </div>
+                        </td>
+                        <td class="align-middle">
+                            <div class="d-flex justify-content-center">
+                                <a asp-action="CreateUpdate" asp-route-Id="@product.Id" class="btn btn-info rounded rounded-3 ms-3">
+                                    <i class="bi bi-pencil-fill fs-5"></i>
+                                </a>
+                                &nbsp;
+                                <a class="btn btn-danger rounded rounded-3 ms-2">
+                                    <i class="bi bi-trash3 fs-5"></i>
+                                </a>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

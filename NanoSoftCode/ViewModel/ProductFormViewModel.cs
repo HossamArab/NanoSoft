@@ -15,6 +15,9 @@
         [Display(Name = "القسم الفرعي")]
         public int SubCategoryId { get; set; }
         public IEnumerable<SelectListItem> SubCategories { get; set; } = Enumerable.Empty<SelectListItem>();
+        public string? CurrentImage { get; set; }
+        public string? CurrentDataSheet { get; set; }
+        public string? CurrentDriver { get; set; }
         public IFormFile? ImagePath { get; set; } = default!;
         public IFormFile? Datasheet { get; set; } = default!;
         public IFormFile? Driver { get; set; } = default!;

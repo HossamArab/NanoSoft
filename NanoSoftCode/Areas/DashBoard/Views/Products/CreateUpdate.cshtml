@@ -1,0 +1,107 @@
+﻿@model ProductFormViewModel
+@{
+    ViewData["Title"] = "منتج";
+    Layout = "~/Areas/DashBoard/Views/Shared/_Dashboard.cshtml";
+}
+
+<h1 class="main-title"> منتج</h1>
+<form asp-area="Dashboard" asp-controller="Products" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                <label asp-for="Name" class="form-label mt-4"></label>
+                <input type="text" class="form-control" asp-for="Name" placeholder="ادخل الاسم">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="CategoryId" class="form-label mt-4"></label>
+                <select id="select1" class="form-control" asp-for="CategoryId" asp-items="Model.Categories">
+                    <option value="">أختر قسم</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="SubCategoryId" class="form-label mt-4"></label>
+                <select id="select2" class="form-control" asp-for="SubCategoryId" asp-items="Model.SubCategories">
+                    <option value="">أختر قسم فرعي</option>
+                </select>
+                <span asp-validation-for="SubCategoryId" class="text-danger"></span>
+                <input type="hidden" asp-for="SubCategoryId" id="hiddenSubCategoryId" />
+            </div>
+            <div>
+                <label asp-for="Description" class="form-label mt-4"></label>
+                <textarea type="text" class="form-control" asp-for="Description" placeholder="ادخل الوصف"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+
+            </div>
+            <div>
+                <label asp-for="ImagePath" class="form-label mt-4"></label>
+                <input type="file" accept="image/*" class="form-control" asp-for="ImagePath"
+                       data-rule-extension="@ImageSettings.AllowedExtentions.Replace(".",string.Empty)"
+                       data-msg-extension="هذه الصيغة غير مدعومة"
+                       data-rule-filesize="@ImageSettings.MaxFileSizeInByte"
+                       data-msg-filesize="Maximum allowed size is @(ImageSettings.MaxFileSizeInMB)Mb">
+                <small class="form-text text-muted">Only @ImageSettings.AllowedExtentions files are allowed with Max size @(ImageSettings.MaxFileSizeInMB)Mb.</small>
+                <span asp-validation-for="ImagePath" class="text-danger d-block"></span>
+            </div>
+            <div>
+                <label asp-for="Datasheet" class="form-label mt-4"></label>
+                <input type="file" class="form-control" asp-for="Datasheet"
+                       data-rule-extension="@DatasheetsSettings.AllowedExtentions.Replace(".",string.Empty)"
+                       data-msg-extension="هذه الصيغة غير مدعومة"/>
+                <small class="form-text text-muted">Only @DatasheetsSettings.AllowedExtentions files are allowed</small>
+                <span asp-validation-for="Datasheet" class="text-danger d-block"></span>
+            </div>
+            <div>
+                <label asp-for="Driver" class="form-label mt-4"></label>
+                <input type="file" class="form-control" asp-for="Driver"
+                       data-rule-extension="@DriversSetting.AllowedExtentions.Replace(".",string.Empty)"
+                       data-msg-extension="هذه الصيغة غير مدعومة"/>
+                <small class="form-text text-muted">Only @DriversSetting.AllowedExtentions files are allowed</small>
+                <span asp-validation-for="Driver" class="text-danger d-block"></span>
+            </div>
+            <button type="submit" class="btn btn-info text-light mt-5">حفظ</button>
+            <hr/>
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-center pt-4">
+            <img src="@($"{ImageSettings.ImagesPath}/{Model.CurrentImage}")" class="cover-preview" alt="cover" />
+        </div>
+    </div>
+</form>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/store-form.js" asp-append-version="true"></script>
+    <script src="~/js/FileValidate.js" asp-append-version="true"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#select1').change(function () {
+                var categoryId = $(this).val();
+                $.ajax({
+                    url: '@Url.Action("GetSubCategories", "Products")',
+                    type: 'GET',
+                    data: { categoryId: categoryId },
+                    success: function (data) {
+                        var select2 = $('#select2');
+                        select2.empty();
+                        select2.append('<option value="">--اختر قسم فرعي--</option>');
+
+                        $.each(data, function (index, subCategory) {
+                            console.log(subCategory);
+                            select2.append('<option value="' + subCategory.id + '">' + subCategory.name + '</option>');
+                        });
+                    },
+                    error: function (xhr, status, error) {
+                        console.log("AJAX Error: ", status, error);
+                    }
+                });
+            });
+
+            // Update hidden field when subcategory changes
+            $('#select2').change(function () {
+                $('#hiddenSubCategoryId').val($(this).val());
+            });
+        });
+    </script>
+}
