@@ -8,5 +8,6 @@
         Task Create(SubCategoryFormViewModel model);
         Task<SubCategory?> Update(SubCategoryFormViewModel model);
         Task Delete(SubCategoryFormViewModel model);
+        IEnumerable<SubCategory> GetByCategory(int? Id);
     }
 }

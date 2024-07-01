@@ -144,5 +144,15 @@ namespace NanoSoftCode.Services
             await Files.CopyToAsync(stream);
             return fileName;
         }
+
+        public IEnumerable<Product> GetByCategoryID(int? ID)
+        {
+            return _context.Products
+               .Include(c => c.Category)
+               .Include(s => s.SubCategory)
+               .Where(p => p.CategoryId == ID)
+               .AsNoTracking()
+               .ToList();
+        }
     }
 }

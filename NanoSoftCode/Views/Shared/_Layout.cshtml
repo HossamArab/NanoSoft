@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Category>
+﻿@model CombainLists
 <!DOCTYPE html>
 <html lang="ar">
 <head>
@@ -36,50 +36,12 @@
                             <li>
                                 <a><i class="fas fa-list fa-fw"></i> كل المنتجات</a>
                             </li>
-                            <li>
-                                <a><i class="fas fa-code fa-fw"></i> برامج حسابات</a>
-                            </li>
-                            <li>
-                                <a><i class="far fa-user fa-fw"></i> شبكات</a>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-laptop fa-fw"></i> أجهزة كاشير</a>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-barcode fa-fw"></i>موازين باركود</a>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-money-bill fa-fw"></i>طابعات فواتير</a>
-                            </li>
-                            <li>
-                                <a><i class="far fa-calendar fa-fw"></i>طابعات باركود</a>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-server fa-fw"></i>قارئ باركود </a>
-                            </li>
-                       @*  </ul>
-                        <ul class="links"> *@
-                            <li>
-                                <a><i class="fas fa-desktop fa-fw"></i> درج نقدية </a>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-paper-plane fa-fw"></i> بكر استرتش</a>
-                            </li>
-                            <li>
-                                <a><i class="far fa-play-circle fa-fw"></i> معدات و قطاعات</a>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-shopping-cart fa-fw"></i> سلات تسوق</a>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-weight fa-fw"></i> موازين</a>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-truck fa-fw"></i> موازين بيسكول</a>
-                            </li>
-                            <li>
-                                <a><i class="fas fa-upload fa-fw"></i> سلالم</a>
-                            </li>
+                            @foreach(var cateogry in Model.Categories!)
+                            {
+                                <li>
+                                    <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-Id="@cateogry.Id"><i class="fas fa-code fa-fw"></i> @cateogry.Name </a>
+                                </li>
+                            }
                        </ul> 
                     </div>
                     <!-- End Megamenu -->
@@ -96,7 +58,7 @@
                 </p>
             </div>
             <div class="imagel">
-                <img src="img/landing.png" alt="" />
+                <img src="~/img/landing.png" alt="" />
                 @* <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="402.000000pt" height="288.000000pt"
                      viewBox="0 0 402.000000 288.000000" preserveAspectRatio="xMidYMid meet">
 
@@ -314,10 +276,10 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/mixitup.min.js" asp-append-version="true"></script>
+    <script src="~/js/mainScript.js" asp-append-version="true"></script>
+    <script src="~/js/product.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="js/mixitup.min.js" asp-append-version="true"></script>
-    <script src="js/mainScript.js" asp-append-version="true"></script>
-    <script src="js/product.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,21 +1,22 @@
-
-
-
+using NanoSoftCode.Models;
 
 namespace NanoSoftCode.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ICategoryService categoriesService) : base(categoriesService)
         {
-            _logger = logger;
+            _categoriesService = categoriesService;
         }
-
+        private readonly ICategoryService _categoriesService;
         public IActionResult Index()
         {
-            return View();
+            var category = _categoriesService.GetAll();
+            var viewModel = new CombainLists
+            {
+                Categories = category
+            };
+            return View(viewModel);
         }
 
         public IActionResult Privacy()

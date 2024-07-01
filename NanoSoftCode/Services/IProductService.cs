@@ -7,5 +7,6 @@
         Task Create(ProductFormViewModel model);
         Task<Product?> Update(ProductFormViewModel model);
         Task Delete(ProductFormViewModel model);
+        IEnumerable<Product> GetByCategoryID(int? ID);
     }
 }

@@ -62,5 +62,14 @@ namespace NanoSoftCode.Services
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<SubCategory> GetByCategory(int? Id)
+        {
+            return _context.SubCategories
+               .Include(c => c.Category)
+               .Where(sc => sc.CategoryId == Id)
+               .AsNoTracking()
+               .ToList();
+        }
     }
 }
