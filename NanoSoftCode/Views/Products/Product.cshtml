@@ -1,0 +1,39 @@
+﻿@model CombainLists
+@{
+    ViewData["Title"] = "المنتجات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="offers">
+    <div class="container">
+        <ul class="shuffle-filter">
+            <li class="selected filter" data-filter="all">
+                الكل
+            </li>
+            @foreach (var subcategory in Model.SubCategories!)
+            {
+                <li class="filter" data-filter=".@subcategory.Name">@subcategory.Name</li>
+            }
+        </ul>
+        <ul class="suffle-container" id="Sfilter">
+            @foreach (var product in Model.Products!)
+            {
+                <li class="mix @product.SubCategory!.Name">
+                    <div class="Card">
+                        <a class="order">
+                            <img src="@($"{ImageSettings.ImagesPath}/{product.ImagePath}")" alt="rongta-logo">
+                            <h3 class="Model">@product.Name</h3>
+                            <div class="info">
+                                التفاصيل
+                            </div>
+                            <!-- <div class="info">
+                                التفاصيل
+                            </div> -->
+                        </a>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+

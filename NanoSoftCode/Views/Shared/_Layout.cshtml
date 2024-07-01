@@ -34,12 +34,12 @@
                         </div>
                         <ul class="links">
                             <li>
-                                <a><i class="fas fa-list fa-fw"></i> كل المنتجات</a>
+                                <a asp-area="" asp-controller="Products" asp-action="Index"><i class="fas fa-list fa-fw"></i> كل المنتجات</a>
                             </li>
                             @foreach(var cateogry in Model.Categories!)
                             {
                                 <li>
-                                    <a asp-area="" asp-controller="Products" asp-action="Index" asp-route-Id="@cateogry.Id"><i class="fas fa-code fa-fw"></i> @cateogry.Name </a>
+                                    <a asp-area="" asp-controller="Products" asp-action="Product" asp-route-Id="@cateogry.Id"><i class="fas fa-code fa-fw"></i> @cateogry.Name </a>
                                 </li>
                             }
                        </ul> 
@@ -176,7 +176,7 @@
             <i class="fas fa-angle-double-down fa-2x"></i>
         </a>
     </div>
-    <div id="MainPage" class="container">
+    <div id="MainPage" class="">
         <main role="main">
             @RenderBody()
         </main>
@@ -277,8 +277,6 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/mixitup.min.js" asp-append-version="true"></script>
-    <script src="~/js/mainScript.js" asp-append-version="true"></script>
-    <script src="~/js/product.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

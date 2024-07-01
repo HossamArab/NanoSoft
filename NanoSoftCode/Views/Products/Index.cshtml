@@ -4,36 +4,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="offers">
+<div class="category" id="products">
     <div class="container">
-        <ul class="shuffle-filter">
-            <li class="selected filter" data-filter="all">
-                الكل
-            </li>
-            @foreach(var subcategory in Model.SubCategories!)
+        <h2 class="main-title">المنتجات</h2>
+        <div class="wrapper-cat">
+            @foreach (var category in Model.Categories!)
             {
-                <li class="filter" data-filter=".@subcategory.Name">@subcategory.Name</li>
-            }
-        </ul>
-        <ul class="suffle-container" id="Sfilter">
-            @foreach(var product in Model.Products!)
-            {
-                <li class="mix @product.SubCategory!.Name">
-                    <div class="Card">
-                        <a class="order">
-                            <img src="@($"{ImageSettings.ImagesPath}/{product.ImagePath}")" alt="rongta-logo">
-                            <h3 class="Model">@product.Name</h3>
-                            <div class="info">
-                                التفاصيل
+                <div class="box-cat">
+                    <a asp-area="" asp-controller="Products" asp-action="Product" asp-route-Id="@category.Id">
+                        <div class="test-cat">
+                            <img class="img-cat" src="@($"{ImageSettings.ImagesPath}/{category.ImagePath}")" alt="">
+                            <div class="over">
+                                <p class="para-cat">@category.Name</p>
                             </div>
-                            <!-- <div class="info">
-                                التفاصيل
-                            </div> -->
-                        </a>
-                    </div>
-                </li>
+                        </div>
+                    </a>
+                </div>
             }
-        </ul>
+            
+        </div>
+        <div class="btns-cat">
+            <span><i class="fa fa-arrow-right"></i></span>
+            <span><i class="fa fa-arrow-left"></i></span>
+        </div>
     </div>
 </div>
+@section Scripts
+{
+    <script src="~/js/product.js" asp-append-version="true"></script>
+}
 

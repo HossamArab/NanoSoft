@@ -1,8 +1,82 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "الصفحة الرئيسية";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="nano-slider" class="slider-csr">
+    <div class="slideshow-container">
+        <!-- Full-width images with caption text -->
+        <div class="mySlides fade anime-3d ">
+            <div class="network-img all-sliders">
+                <div class="text">تركيب و صيانة الشبكات</div>
+            </div>
+        </div>
+        <div class="mySlides fade anime-3d ">
+            <div class="company-img all-sliders">
+                <div class="text">برنامج لإدارة الحسابات</div>
+            </div>
+        </div>
+        <div class="mySlides fade anime-3d">
+            <div class="factory-img all-sliders">
+                <div class="text">موازين للمصانع و موازين بيسكول</div>
+            </div>
+        </div>
+        <div class="mySlides fade anime-3d">
+            <div class="market-img all-sliders">
+                <div class="text">تجهيزات للسوبر ماركت</div>
+            </div>
+        </div>
+        <div class="mySlides fade anime-3d">
+            <div class="resturant-img all-sliders">
+                <div class="text">نقاط بيع و تجهيزات المطاعم</div>
+            </div>
+        </div>
+        <div class="mySlides fade anime-3d">
+            <div class="storage-img all-sliders">
+                <div class="text">برنامج لإدارة المخازن</div>
+            </div>
+        </div>
+        <div class="mySlides fade anime-3d">
+            <div class="vege-img all-sliders">
+                <div class="text"> تجهيز المشروعات الصغيرة</div>
+            </div>
+        </div>
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10095;</a>
+        <a class="next" onclick="plusSlides(1)">&#10094;</a>
+        <br>
+        <!-- The dots/circles -->
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+        </div>
+    </div>
 </div>
+<!-- end slider  -->
+<!-- networks  -->
+<div class="networks">
+    <div class="container">
+        <h2 class="main-title">الشبكات</h2>
+        <div class="netw">
+            <img src="~/img/serversa.png" alt="" class="sever">
+            <p class="serverP">
+                شركة نانو سوفت كود لـ حلول الشبكات هى شركة متخصصة فى تركيب ودعم الشبكات . لدينا خبرة
+                واسعة بمنتجات مايكروسوفت وانظمة الانترنت العالمية لعمل الدعم الفنى لكافة الشبكات والأجهزة.
+                <br />تعمل شركة نانو سوفت كود على تصميم الشبكات و تنفيذ الشبكات و صيانة شبكات الكمبيوتر، والإنترنت
+                والإتصالات للشركات والمؤسسات الصغيرة والمتوسطة وكبيرة الحجم في جمهوريه مصر العربيه بكل دقة وعناية
+                وتقدم لعملائها افضل الخدمات بالإضافة إلى ذلك تقوم الشركة بإدارة الشبكات وتقديم الدعم الفني بموجب
+                عقود سنوية ، والتركيز على الصيانة الوقائية لمنع وتقليل حدوث الأعطال .
+            </p>
+        </div>
+    </div>
+</div>
+<!-- end networks  -->
+@section Scripts
+{
+    <script src="~/js/Slider.js" asp-append-version="true"></script>
+
+}

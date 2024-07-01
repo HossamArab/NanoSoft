@@ -13,7 +13,18 @@ namespace NanoSoftCode.Controllers
         private ICategoryService _categoriesService;
         private readonly IProductService _productService;
         private readonly ISubCategoryService _subCategoryService;
-        public IActionResult Index(int? Id)
+        public IActionResult Index()
+        {
+            var category = _categoriesService.GetAll();
+            var viewModel = new CombainLists
+            {
+                Categories = category
+                
+            };
+
+            return View(viewModel);
+        }
+        public IActionResult Product(int? Id)
         {
             var category = _categoriesService.GetAll();
             var products = _productService.GetByCategoryID(Id);
@@ -23,7 +34,7 @@ namespace NanoSoftCode.Controllers
                 Products = products,
                 SubCategories = subCategories,
                 Categories = category
-                
+
             };
 
             return View(viewModel);

@@ -312,35 +312,34 @@ ul {
     position: relative;
 }
 .company-img {
-    background-image: url(../img/company.jpg);
+    background-image: url(../Img/company.jpg);
     transition: var(--main-transition);
     
 }
 .factory-img {
-    background-image: url(../img/Factory.jpg);
+    background-image: url(../Img/Factory.jpg);
     transition: var(--main-transition);
 }
 .network-img {
-    background-image: url(../img/Networks.jpg);
+    background-image: url(../Img/Networks.jpg);
     transition: var(--main-transition);
 }
 .market-img {
-    background-image: url(../img/market.jpg);
+    background-image: url(../Img/market.jpg);
     transition: var(--main-transition);
 }
 .resturant-img {
-    background-image: url(../img/resturant.jpg);
+    background-image: url(../Img/resturant.jpg);
     transition: var(--main-transition);
 }
 .storage-img {
-    background-image: url(../img/Storage.jpg);
+    background-image: url(../Img/Storage.jpg);
     transition: var(--main-transition);
 }
 .vege-img {
-    background-image: url(../img/vege.jpg);
+    background-image: url(../Img/vege.jpg);
     transition: var(--main-transition);
 }
-
 /* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
@@ -1382,11 +1381,6 @@ td:nth-child(2){
     transition-duration: 1000ms;
     transition-timing-function: ease-in-out;
 }
-
-.btns-cat>span:nth-child(2) {
-    transform: rotate(180deg);
-}
-
 .btns-cat>span:hover {
     background-color: var(--main-color);
     opacity: 1;
@@ -1539,20 +1533,26 @@ td:nth-child(2){
 }
 
 .header .mega-menu .links {
-    min-width: 500px;
     display: flex;
-    flex-direction: row;
-    flex-shrink: 5;
     flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 600px;
     align-content: stretch;
-    justify-content: center;
     align-items: center;
 }
 
 .header .mega-menu .links li {
     position: relative;
+    width: 48%;
 }
-
+@media (max-width: 991px) {
+    .header .mega-menu .links {
+        display: block;
+    }
+    .header .mega-menu .links li{
+        width:100%
+    }
+}
 .header .mega-menu .links li:not(:last-child) {
     border-bottom: 1px solid #e9e6e6;
 }
